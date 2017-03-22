@@ -1,0 +1,15 @@
+#!/bin/sh
+
+. "$(dirname "$0")/.common.sh"
+
+trap_fail
+
+pkg-config --exists libpcre || apt-get install -y libpcre3-dev
+
+: ${nginx_ver:=1.5.12}
+
+dl_compile_and_install "http://nginx.org/download/nginx-$nginx_ver.tar.gz" /srv/nginx "$DESTDIR" "" \
+  --with-http_ssl_module --with-http_auth_request_module \
+  --user=www-data --group=www-data
+
+exit_succ

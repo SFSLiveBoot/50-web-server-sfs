@@ -1,0 +1,19 @@
+#!/bin/sh
+
+. "$(dirname "$0")/.common.sh"
+
+trap_fail
+
+apt-get install -y python-dev libpcre3-dev libxml2-dev libpcre3-dev libcap2-dev ruby-dev
+
+: ${uwsgi_name:=uwsgi-lts}
+: ${uwsgi_src:=http://projects.unbit.it/downloads/${uwsgi_name}.tar.gz}
+: ${uwsgi_src_dir:=$HOME/.cache/lbu-compile/$(echo -n "$uwsgi_src" | md5sum | cut -c1-8)-${uwsgi_name}-src}
+
+dl_compile_and_install "$uwsgi_src" /srv/uwsgi "$DESTDIR" "$uwsgi_name"
+
+make -C "$uwsgi_src_dir" plugin.rack
+install -s "${uwsgi_src_dir}/rack_plugin.so" "$DESTDIR/srv/uwsgi/lib"
+strip "$DESTDIR/srv/uwsgi/bin/uwsgi"
+
+exit_succ

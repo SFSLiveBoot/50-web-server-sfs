@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI Emperor
+After=syslog.socket
+
+[Service]
+ExecStart=/srv/uwsgi/bin/uwsgi --ini /srv/uwsgi/etc/emperor.ini
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=main
+
+[Install]
+WantedBy=multi-user.target

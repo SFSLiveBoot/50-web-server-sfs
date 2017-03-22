@@ -1,0 +1,7 @@
+[Unit]
+Description=Nginx web server
+
+[Service]
+ExecStart=/srv/nginx/sbin/nginx
+Type=forking
+PIDFile=/srv/nginx/logs/nginx.pid

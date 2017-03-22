@@ -1,0 +1,17 @@
+#!/bin/sh
+
+. "$(dirname "$0")/.common.sh"
+
+trap_fail
+
+for src in F/Flask/Flask-0.10.1.tar.gz W/Werkzeug/Werkzeug-0.9.4.tar.gz \
+  J/Jinja2/Jinja2-2.7.2.tar.gz M/MarkupSafe/MarkupSafe-0.19.tar.gz \
+  i/itsdangerous/itsdangerous-0.24.tar.gz P/PyYAML/PyYAML-3.11.tar.gz \
+  F/Flask-Babel/Flask-Babel-0.9.tar.gz t/textile/textile-2.2.2.tar.gz \
+  B/Babel/Babel-1.3.tar.gz M/Markdown/Markdown-2.6.2.tar.gz \
+  b/bottle/bottle-0.12.8.tar.gz
+do 
+  dl_compile_and_install "https://pypi.python.org/packages/source/$src" /opt "$DESTDIR"
+done
+
+exit_succ
