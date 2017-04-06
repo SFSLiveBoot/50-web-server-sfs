@@ -6,9 +6,9 @@ trap_fail
 
 pkg-config --exists libpcre || apt-get install -y libpcre3-dev
 
-: ${nginx_ver:=1.5.12}
+: ${nginx_url:=https://nginx.org/download/$(latest_nginx)}
 
-dl_compile_and_install "http://nginx.org/download/nginx-$nginx_ver.tar.gz" /srv/nginx "$DESTDIR" "" \
+dl_compile_and_install "$nginx_url" /srv/nginx "$DESTDIR" "" \
   --with-http_ssl_module --with-http_auth_request_module \
   --user=www-data --group=www-data
 
