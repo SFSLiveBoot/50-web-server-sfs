@@ -12,4 +12,6 @@ dl_compile_and_install "$nginx_url" /srv/nginx "$DESTDIR" "" \
   --with-http_ssl_module --with-http_auth_request_module \
   --user=www-data --group=www-data
 
+mv "$DESTDIR/srv/nginx/conf/nginx.conf.lbu" "$DESTDIR/srv/nginx/conf/nginx.conf"
+
 exit_succ
