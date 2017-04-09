@@ -7,6 +7,9 @@ trap_fail
 : ${nodejs_txz:=$(dl_file $(latest_nodejs_url))}
 
 mkdir -p "$DESTDIR/opt"
-tar xfvJ "$nodejs_txz" --strip-components=1 -C "$DESTDIR/opt" --exclude CHANGELOG.md --exclude LICENSE --exclude README.md
+tar xfvJ "$nodejs_txz" --strip-components=1 -C "$DESTDIR/opt" --no-same-owner \
+    --exclude CHANGELOG.md \
+    --exclude LICENSE \
+    --exclude README.md
 
 exit_succ
