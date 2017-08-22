@@ -4,7 +4,7 @@
 
 trap_fail
 
-pkg-config --exists libpcre || apt-get install -y libpcre3-dev
+pkg-config --exists libpcre || apt-get install -y libpcre3-dev zlib1g-dev
 
 : ${nginx_url:=https://nginx.org/download/$(latest_nginx)}
 
