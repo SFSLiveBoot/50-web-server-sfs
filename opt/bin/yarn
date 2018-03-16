@@ -1,0 +1,10 @@
+#!/bin/sh
+
+: "${yarn_path:=/opt/yarn}"
+
+test -x "$yarn_path/bin/yarn" || {
+  echo "ERROR: Cannot find yarn installation. Please install yarn to '$yarn_path' first." >&2
+  exit 1
+}
+
+exec "$yarn_path/bin/yarn" "$@"
