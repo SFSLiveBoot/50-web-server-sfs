@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+. "$(dirname "$0")/.common.sh"
+
+confirm_latest "NodeJS" "$(installed_nodejs_ver)" "$(latest_nodejs_ver)"
+confirm_latest "Nginx" "$(installed_nginx_ver)" "$(latest_nginx_ver)"
